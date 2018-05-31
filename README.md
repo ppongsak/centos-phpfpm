@@ -2,7 +2,7 @@
 
 ### 1. install docker
 
-[https://docs.docker.com/install]
+https://docs.docker.com/install 
 
 ### 2. pull image
 ``` docker pull centos:7 ```
