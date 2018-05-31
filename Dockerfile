@@ -2,8 +2,7 @@ FROM centos:7
 
 # install PHP and extensions
 RUN yum clean all; yum -y update; \
-    rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm \
-    yum -y --enablerepo=remi,remi-php70w install nginx php70w-cli php70w-devel php70w-fpm php70w-gd php70w-mbstring php70w-mcrypt php70w-mysql php70w-pear php70w-opcache php70w-common \
+    yum -y --enablerepo=remi,remi-php72 install epel-release php php-fpm php-cli \
     php-bcmath \
     php-dom \
     php-gd \
@@ -19,8 +18,22 @@ RUN yum clean all; yum -y update; \
     php-pecl-memcache \
     php-pecl-memcached \
     php-pecl-redis \
-    php-zip; \
+    php-zip \
     yum clean all
+
+# create /tmp/lib/php
+RUN mkdir -p /tmp/lib/php/session; \
+    mkdir -p /tmp/lib/php/wsdlcache; \
+    mkdir -p /tmp/lib/php/opcache; \
+    mkdir /root/.composer; \
+    chmod 777 -R /tmp/lib/
+
+# add custom config
+COPY ./php/php.ini /etc/php.ini
+COPY ./php/www.conf /etc/php-fpm.d/www.conf
+
+RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+    python get-pip.py
 
 # install Composer and plugins
 RUN curl -sS https://getcomposer.org/installer | php
