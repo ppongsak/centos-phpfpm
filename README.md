@@ -4,7 +4,9 @@
 
 https://docs.docker.com/install 
 
-### 2. pull image
+### 2. pull centos:7 image
+
 ``` docker pull centos:7 ```
+
 ### 3. build new image 
-``` docker build --rm -t centos-phpfpm . ```
+``` docker build -t centos-phpfpm . ```
