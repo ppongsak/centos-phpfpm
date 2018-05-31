@@ -1,12 +1,16 @@
 # centos-phpfpm
 
-### 1. install docker
+### 1. clone poject
+
+``` git clone https://github.com/ppongsak/centos-phpfpm.git ```
+
+### 2. install docker
 
 https://docs.docker.com/install 
 
-### 2. pull centos:7 image
+### 3. pull centos:7 image
 
 ``` docker pull centos:7 ```
 
-### 3. build new image 
+### 4. build new image 
 ``` docker build -t centos-phpfpm . ```
