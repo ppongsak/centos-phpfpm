@@ -13,4 +13,4 @@ https://docs.docker.com/install
 ``` docker pull centos:7 ```
 
 ### 4. build new image 
-``` docker build -t centos-phpfpm . ```
+``` docker build -t centos-phpfpm:tag . ```
