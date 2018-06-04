@@ -6,9 +6,17 @@
 
 ### 2. install docker
 
-https://docs.docker.com/install 
+https://docs.docker.com/install
+
+when finished install docker try command
+
+``` docker --help ```
+
+will see all docker command on screen
 
 ### 3. pull centos:7 image
+
+we need to pull docker image from hub
 
 ``` docker pull centos:7 ```
 
@@ -19,6 +27,8 @@ https://docs.docker.com/install
 ### 5. build new image 
 
 ``` docker build -t centos-phpfpm:tag . ```
+
+Ex. ``` docker build -t centos-phpfpm:1.0 . ```
 
 ### 6. complete
 
