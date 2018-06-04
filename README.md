@@ -12,5 +12,18 @@ https://docs.docker.com/install
 
 ``` docker pull centos:7 ```
 
-### 4. build new image 
+### 4. access to centos-php folder 
+
+``` cd centos-php ```
+
+### 5. build new image 
+
 ``` docker build -t centos-phpfpm:tag . ```
+
+### 6. complete
+
+wait until complete and run this command
+
+``` docker images ```
+
+will see centos-php image
