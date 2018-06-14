@@ -2,7 +2,9 @@ FROM centos:7
 
 # install PHP and extensions
 RUN yum clean all; yum -y update; \
-    yum -y --enablerepo=remi,remi-php72 install epel-release php php-fpm php-cli \
+    yum -y install epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm; \
+    yum -y --enablerepo=remi,remi-php72 install php \
+    php-fpm \
     php-bcmath \
     php-dom \
     php-gd \
@@ -19,7 +21,11 @@ RUN yum clean all; yum -y update; \
     php-pecl-memcached \
     php-pecl-redis \
     php-zip \
-    yum clean all
+    php-iconv \
+    php-openssl \
+    yum -y update; \
+    yum clean all; \
+    php --version;
 
 # create /tmp/lib/php
 RUN mkdir -p /tmp/lib/php/session; \
@@ -31,6 +37,9 @@ RUN mkdir -p /tmp/lib/php/session; \
 # add custom config
 COPY ./php/php.ini /etc/php.ini
 COPY ./php/www.conf /etc/php-fpm.d/www.conf
+
+RUN chmod 777 -R /etc/php-fpm.d ; \
+    mkdir /var/run/php-fpm
 
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
     python get-pip.py
